@@ -325,6 +325,34 @@ body{animation:bgPan 22s ease-in-out infinite;}
 .roast-toast.pos-top-right{top:64px;right:16px;transform:translate(30px,-30px) scale(.6) rotate(10deg);}
 .roast-toast.pos-top-right.show{transform:translate(0,0) scale(1) rotate(0);}
 
+/* ---------- excuse generator (chatbot style) ---------- */
+.excuse-wrap{max-width:640px;margin:0 auto;padding:0 20px 50px;}
+.excuse-card{padding:26px 22px 24px;position:relative;overflow:hidden;}
+.excuse-card::before{content:"";position:absolute;top:-40%;left:-10%;width:60%;height:140%;background:radial-gradient(circle, rgba(200,255,77,.10), transparent 65%);pointer-events:none;}
+.excuse-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;position:relative;z-index:2;}
+.excuse-logo{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(200,255,77,.28), rgba(255,176,32,.14));display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+.excuse-logo svg{width:24px;height:24px;}
+.excuse-logo .ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid transparent;border-top-color:var(--lime);opacity:0;transition:opacity .3s;}
+.excuse-logo.thinking .ring{opacity:1;animation:spin .9s linear infinite;}
+.excuse-title{font-weight:800;font-size:14.5px;}
+.excuse-status{font-size:11.5px;color:var(--ink-dimmer);display:flex;align-items:center;gap:6px;margin-top:2px;}
+.excuse-status .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:pulseDot 1.8s infinite;flex-shrink:0;}
+.excuse-body{min-height:78px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px;font-size:14.5px;line-height:2;color:var(--ink);position:relative;margin-bottom:18px;z-index:2;display:flex;align-items:center;}
+.excuse-typing-dots{display:inline-flex;gap:5px;align-items:center;}
+.excuse-typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--ink-dimmer);animation:typingBounce 1.1s infinite;}
+.excuse-typing-dots span:nth-child(2){animation-delay:.15s;}
+.excuse-typing-dots span:nth-child(3){animation-delay:.3s;}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-5px);opacity:1;}}
+.excuse-cursor{display:inline-block;width:2px;height:16px;background:var(--lime);margin-right:2px;vertical-align:middle;animation:cursorBlink .9s steps(1) infinite;}
+@keyframes cursorBlink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+.excuse-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:14px;border:none;cursor:pointer;font-family:var(--ff-display);font-weight:800;font-size:14px;color:#0d1006;background:linear-gradient(90deg,var(--lime),var(--amber));transition:transform .2s var(--ease), box-shadow .2s var(--ease);box-shadow:0 8px 22px rgba(200,255,77,.25);position:relative;z-index:2;}
+.excuse-btn:active{transform:scale(.95);}
+.excuse-btn:disabled{opacity:.65;cursor:default;}
+.excuse-btn .dice{display:inline-block;}
+.excuse-btn.rolling .dice{animation:diceSpin .5s linear infinite;}
+@keyframes diceSpin{to{transform:rotate(360deg);}}
+.excuse-tagline{font-size:11.5px;color:var(--ink-dimmer);margin-top:12px;text-align:center;position:relative;z-index:2;}
+
 /* ---------- responsive ---------- */
 @media (max-width:640px){
   .section{padding:54px 16px;}
@@ -532,6 +560,36 @@ body{animation:bgPan 22s ease-in-out infinite;}
   <div class="section-label"><span class="num">۰۲</span> فصل دوم — دوران انتظار</div>
   <h2>نتیجه هنوز نیومده، ولی دلشوره از الان شروع شده</h2>
   <p class="desc">هیچ‌کس دقیق نمی‌دونه اون جلسه چند تا سوال جا موند، ولی یه چیز مشخصه: کنکور ارشد که تموم بشه، نوبت به یه اردوی دیگه می‌رسه...</p>
+</div>
+
+<div class="section reveal" style="padding-bottom:10px;">
+  <div class="section-label"><span class="num">۰۳</span> ابزار رسمی — بهانه‌ساز دماغ</div>
+  <h2>چرا سرجلسه خوابش برد؟ بذار هوش مصنوعی جواب بده</h2>
+  <p class="desc">دقیقاً به سبک چت‌بات‌ها — هر بار که دکمه رو بزنی، یه بهانه‌ی جدید و «کاملاً قانع‌کننده» برای خواب رفتن دماغ سرجلسه می‌سازه.</p>
+</div>
+
+<div class="excuse-wrap reveal">
+  <div class="excuse-card glass">
+    <div class="excuse-header">
+      <div class="excuse-logo" id="excuseLogo">
+        <div class="ring"></div>
+        <svg viewBox="0 0 200 200" fill="none">
+          <path d="M100 20c-6 0-11 5-12 12-4 30-14 55-34 82-14 19-8 42 14 50 10 4 20 5 32 5s22-1 32-5c22-8 28-31 14-50-20-27-30-52-34-82-1-7-6-12-12-12z" fill="#c8ff4d"/>
+          <ellipse cx="80" cy="150" rx="9" ry="13" fill="#1a1d12"/>
+          <ellipse cx="120" cy="150" rx="9" ry="13" fill="#1a1d12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="excuse-title">بهانه‌ساز دماغ AI</div>
+        <div class="excuse-status"><span class="dot"></span><span id="excuseStatusText">آنلاین و آماده‌ی بهانه‌تراشی</span></div>
+      </div>
+    </div>
+    <div class="excuse-body" id="excuseBody">
+      <span style="color:var(--ink-dimmer);">برای شروع، دکمه‌ی زیر رو بزن...</span>
+    </div>
+    <button class="excuse-btn" id="excuseBtn"><span class="dice">🎲</span> یه بهانه بساز</button>
+    <div class="excuse-tagline">بهانه‌ها کاملاً واقعی و قانع‌کننده‌ان (شایدم نه 😏)</div>
+  </div>
 </div>
 
 <div class="roast-marker" data-msg="دفترچه انتخاب رشته: عمران توسعه؟ 👷‍♂️"></div>
@@ -830,6 +888,65 @@ body{animation:bgPan 22s ease-in-out infinite;}
       glH.classList.remove('glitching'); void glH.offsetWidth; glH.classList.add('glitching');
     }
   }, 1800);
+
+  /* ---------- excuse generator (chatbot style) ---------- */
+  var excuses = [
+    "کولر بالای سرم یهو خراب شد و دود کل سالن رو گرفت، تقصیر من نبود 😅",
+    "شب قبلش تا صبح داشتم دکستر می‌دیدم، خوابم برد سرجلسه 📺",
+    "شبکه سه داشت فوتبال پخش می‌کرد، حواسم رفت اونور 🤦‍♂️",
+    "SQL نیومد بالا، سرورش قطع بود، تقصیر امتحانه نه من 💻",
+    "بغل‌دستیم ترکی حرف می‌زد، هی حواسمو پرت می‌کرد 🗣️",
+    "شناسنامه‌مو جا گذاشته بودم، نیم‌ساعت اول رو دم در بحث کردم 📇",
+    "یهو بوی دود اومد، فکر کردم باید فرار کنیم 🔥",
+    "صندلیم جابه‌جا بود، رو یه پایه‌ی لق نشسته بودم کل جلسه 🪑",
+    "فقط ۹۹۹ روز خوندم، دیگه وقت کم آوردم 📚",
+    "وسط جلسه یهو برق رفت، تاریکی مطلق حاکم شد ⚡",
+    "نوک مدادم شکست و مراقب اصلاً تحویل نمی‌داد 😩",
+    "گوشیم از استرس خودش زنگ خورد، مچمو گرفتن 📱",
+    "نفر پشتیم مدام عطسه می‌کرد، تمرکزم صفر شد 🤧",
+    "دیشب اصلاً نخوابیدم، مغزم رسماً آفلاین بود 🔌"
+  ];
+  var excuseBody = document.getElementById('excuseBody');
+  var excuseBtn = document.getElementById('excuseBtn');
+  var excuseLogo = document.getElementById('excuseLogo');
+  var excuseStatus = document.getElementById('excuseStatusText');
+  var lastExcuseIdx = -1;
+
+  function generateExcuse(){
+    if(excuseBtn.disabled) return;
+    excuseBtn.disabled = true;
+    excuseBtn.classList.add('rolling');
+    excuseLogo.classList.add('thinking');
+    excuseStatus.textContent = 'در حال ساختن بهانه...';
+    excuseBody.innerHTML = '<span class="excuse-typing-dots"><span></span><span></span><span></span></span>';
+
+    var idx;
+    do { idx = Math.floor(Math.random()*excuses.length); } while(idx === lastExcuseIdx && excuses.length > 1);
+    lastExcuseIdx = idx;
+    var text = excuses[idx];
+
+    var thinkDelay = 500 + Math.random()*550;
+    setTimeout(function(){
+      excuseBtn.classList.remove('rolling');
+      excuseBody.innerHTML = '<span><span id="excuseTypedText"></span><span class="excuse-cursor"></span></span>';
+      var typedEl = document.getElementById('excuseTypedText');
+      var i = 0;
+      function typeChar(){
+        if(i < text.length){
+          typedEl.textContent += text.charAt(i);
+          i++;
+          var d = 15 + Math.random()*28;
+          setTimeout(typeChar, d);
+        } else {
+          excuseBtn.disabled = false;
+          excuseLogo.classList.remove('thinking');
+          excuseStatus.textContent = 'آنلاین و آماده‌ی بهانه‌تراشی بعدی';
+        }
+      }
+      typeChar();
+    }, thinkDelay);
+  }
+  excuseBtn.addEventListener('click', generateExcuse);
 
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
